@@ -59,7 +59,7 @@ export default function Home() {
       });
     });
   }
-
+  console.log('this env: ', process.env.NEXTAUTH_SECRET)
   async function handleLogout() {
     try {
       logOut();
