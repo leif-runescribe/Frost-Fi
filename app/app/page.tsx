@@ -77,7 +77,7 @@ export default function Home() {
       console.log("Okto authenticated");
     }
   }, [isLoggedIn]);
-
+  
   useEffect(() => {
     if (oktoJwt != null)
       fetchData()
