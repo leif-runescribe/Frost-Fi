@@ -60,8 +60,8 @@ const GlassLandingPage = () => {
             </Link>
             <div className="md:hidden"></div>
             <div className="hidden md:flex items-center space-x-6">
-              <Link href="/app" className="text-black hover:text-blue-400 transition-colors">
-                App
+              <Link href="/frostboard" className="text-black hover:text-blue-400 transition-colors">
+                Frostboard
               </Link>
               <Link href="/features" className="text-black hover:text-purple-400 transition-colors">
                 Features
@@ -98,7 +98,7 @@ const GlassLandingPage = () => {
 
 
                 <div className="flex items-center space-x-4">
-                  <Link href='/app'><button className="px-6 py-3 bg-blue-500 hover:bg-blue-300 rounded-lg font-medium text-black flex items-center space-x-2 transition-colors backdrop-blur-sm">
+                  <Link href="/frostboard"><button className="px-6 py-3 bg-blue-500 hover:bg-blue-300 rounded-lg font-medium text-black flex items-center space-x-2 transition-colors backdrop-blur-sm">
                     <span>Start Now</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
