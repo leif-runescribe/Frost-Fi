@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AppProvider from "./components/providers";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[... nextauth]/route";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 import InteractiveSharpTorusComponent from "./components/Sphere";
 
 const inter = Inter({ subsets: ["latin"] });
