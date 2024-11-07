@@ -92,8 +92,9 @@ const GlassLandingPage = () => {
                   <span className="text-5xl font-medium">Effortlessly Easy</span>
                 </h1>
                 <p className="text-2xl text-gray-900 mt-4 max-w-xl">
-                  Simplifying multi-chain assets with FrostFin's abstraction for seamless transactions.
-                </p>
+  Simplifying multi-chain assets with FrostFin&apos;s abstraction for seamless transactions.
+</p>
+
 
 
                 <div className="flex items-center space-x-4">
