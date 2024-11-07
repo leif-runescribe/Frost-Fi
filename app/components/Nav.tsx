@@ -44,8 +44,8 @@ const Navbar: React.FC = () => {
 
                 {/* Links for desktop */}
                 <div className="hidden md:flex items-center space-x-6">
-                    <Link href="/app" className="text-white/80 hover:text-blue-400 transition-colors">
-                        App
+                    <Link href="/frostboard" className="text-white/80 hover:text-blue-400 transition-colors">
+                        Frostboard
                     </Link>
                     <Link href="/features" className="text-white/80 hover:text-purple-400 transition-colors">
                         Features
@@ -71,8 +71,8 @@ const Navbar: React.FC = () => {
                     <button onClick={toggleSidebar} className="self-end mr-6 mt-2 text-3xl text-white focus:outline-none">
                         ✕
                     </button>
-                    <Link href="/app" className="text-white/80 hover:text-blue-400 text-xl transition-colors">
-                        App
+                    <Link href="/frostboard" className="text-white/80 hover:text-blue-400 text-xl transition-colors">
+                        Frostboard
                     </Link>
                     <Link href="/features" className="text-white/80 hover:text-purple-400 text-xl transition-colors">
                         Features
