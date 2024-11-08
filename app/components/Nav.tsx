@@ -47,11 +47,11 @@ const Navbar: React.FC = () => {
                     <Link href="/frostboard" className="text-white/80 hover:text-blue-400 transition-colors">
                         Frostboard
                     </Link>
-                    <Link href="/features" className="text-white/80 hover:text-purple-400 transition-colors">
-                        Features
-                    </Link>
-                    <Link href="/dashboard" className="text-white/80 hover:text-indigo-400 transition-colors">
+                    <Link href="/dashboard" className="text-white/80 hover:text-purple-400 transition-colors">
                         Dashboard
+                    </Link>
+                    <Link href="/about" className="text-white/80 hover:text-indigo-400 transition-colors">
+                        About
                     </Link>
                     <LoginButton />
 
