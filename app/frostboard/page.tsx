@@ -76,6 +76,8 @@ export default function Home() {
         } else if (error) {
           console.error("Authentication error:", error);
           resolve({ result: false, error });
+        } else{
+          console.log('something in handleauthenticae', idToken)
         }
       });
     });
