@@ -30,7 +30,6 @@ const GlassLandingPage = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-20 bg-gray-100 relative overflow-hidden">
-      {/* Animated Gradient Background Blobs */}
 
       <div className="absolute z-[10] inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-20 w-96 h-96 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-[200px] opacity-30 animate-blob" />
@@ -63,11 +62,11 @@ const GlassLandingPage = () => {
               <Link href="/frostboard" className="text-black hover:text-blue-400 transition-colors">
                 Frostboard
               </Link>
-              <Link href="/features" className="text-black hover:text-purple-400 transition-colors">
-                Features
-              </Link>
-              <Link href="/dashboard" className="text-black hover:text-indigo-400 transition-colors">
+              <Link href="/dashboard" className="text-black hover:text-purple-400 transition-colors">
                 Dashboard
+              </Link>
+              <Link href="/about" className="text-black hover:text-indigo-400 transition-colors">
+                About
               </Link>
               {/* <button className="px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 rounded-lg font-medium text-black transition-all hover:scale-105"> */}
               <LoginButton />
