@@ -30,6 +30,7 @@ import FundAllocationPieChart from "../components/Pie";
 import TransactionForm from "../components/Txn";
 
 export default function Home() {
+  console.log('frostboard typ')
   const [portfolio, setPortfolio] = useState(null);
   const [wallets, setWallets] = useState([]);
   const [supportedNetworks, setSupportedNetworks] = useState<string>([]);
