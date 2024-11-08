@@ -57,6 +57,7 @@ export default function Home() {
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
 
   async function handleAuthenticate(): Promise<any> {
+    console.log('handle authenticate working...')
     if (!idToken) {
       return { result: false, error: "No google login" };
     }
@@ -89,7 +90,6 @@ export default function Home() {
     if (isLoggedIn) {
       console.log('googel token: ', session?.id_token)
       handleAuthenticate()
-      console.log('okto token after handleauth: ', oktoJwt)
       fetchData()
     }
   }, [isLoggedIn]);
@@ -379,7 +379,7 @@ export default function Home() {
               <motion.div
       className=" text-gray-900 rounded-lg p-6 shadow-lg transition-transform duration-300 hover:scale-105"
       whileHover={{ scale: 1.05 }}
-    >
+    ><h1 className="text-2xl">Token Allocation</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Left half - Pie Chart */}
         <div className="flex items-center justify-center">
