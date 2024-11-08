@@ -260,9 +260,9 @@ export default function Home() {
           border border-white/20 
           shadow-2xl"
         >
-          <h1 className="px-12 text-3xl text-black mb-4 md:mb-0">
+          {oktoJwt &&<h1 className="px-12 text-3xl text-black mb-4 md:mb-0">
             Frostboard
-          </h1>
+          </h1>}
 
         </motion.header>
         {!oktoJwt && <div className="flex p-20 rounded-xl text-center items-center justify-center bg-gradient-to-br ">
@@ -277,6 +277,7 @@ export default function Home() {
         {/* Data Dashboard */}
 
         {portfolio ?
+        
           <main className="backdrop-blur-xl  rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col md:px-40 px-12 py-12">
             <header className="w-full max-w-9xl min-w-full flex justify-between items-center mb-8">
               <h1 className="text-white text-4xl font-extrabold"></h1>
