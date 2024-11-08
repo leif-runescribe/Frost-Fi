@@ -2,7 +2,7 @@ export const protocolData: { [key: string]: ProtocolInfo } = {
     tortuga: {
       name: 'Tortuga Finance',
       stakingInfo: 'Staking on Aptos via Tortuga Finance.',
-      logo: '/apt.png', // Replace with the correct path in the public folder
+      logo: '/apt.png', 
     },
     ankr: {
       name: 'Ankr',
