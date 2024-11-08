@@ -75,11 +75,11 @@ const FNavbar: React.FC = () => {
                     <Link href="/frostboard" className="text-white/80 hover:text-blue-400 text-xl transition-colors">
                         App
                     </Link>
-                    <Link href="/features" className="text-white/80 hover:text-purple-400 text-xl transition-colors">
-                        Features
-                    </Link>
-                    <Link href="/dashboard" className="text-white/80 hover:text-indigo-400 text-xl transition-colors">
+                    <Link href="/dashboard" className="text-white/80 hover:text-purple-400 text-xl transition-colors">
                         Dashboard
+                    </Link>
+                    <Link href="/about" className="text-white/80 hover:text-indigo-400 text-xl transition-colors">
+                        About
                     </Link>
                     <LoginButton />
                 </aside>
