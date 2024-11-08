@@ -48,6 +48,10 @@ export default function Home() {
   const [oktoJwt, setOktoJwt] = useState<string | null>(null)
   const [isWalletopen, setWalletOpen] = useState(false)
 
+  const [isStaking, setIsStaking] = useState(false);
+  const [stakingSuccess, setStakingSuccess] = useState(false);
+  const [stakedTokens, setStakedTokens] = useState<any[]>([]);
+
   const {
     isLoggedIn,
     authenticate,
@@ -62,7 +66,7 @@ export default function Home() {
 
   const [selectedChains, setSelectedChains] = useState([]);
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
-
+  
   async function handleAuthenticate(): Promise<any> {
     console.log('handle authenticate working...')
     if (!idToken) {
@@ -93,26 +97,24 @@ export default function Home() {
     }
   }
   useEffect(() => {
-    console.log('frostboard typ');
-    console.log('is logged in ?', isLoggedIn);
-  }, [isLoggedIn]);
-
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      console.log('google login success - ', session?.id_token)
-      handleAuthenticate()
+    if (idToken) {
+      console.log('Google login success - ', idToken);
+      handleAuthenticate(); // Handle Okto authentication
     }
-  }, [isLoggedIn]);
+  }, [idToken]);
 
+  // Once Okto JWT is available, fetch data
   useEffect(() => {
-    if (oktoJwt != null){
-      console.log('okto token:', oktoJwt)
-
-    fetchData()
+    if (oktoJwt) {
+      console.log('Okto JWT available:', oktoJwt);
+      fetchData(); // Fetch the data using Okto JWT
     }
+  }, [oktoJwt]);
 
-  }, [oktoJwt])
+  // Log if the user is logged in
+  useEffect(() => {
+    console.log('is logged in to Okto?', isLoggedIn);
+  }, [isLoggedIn]);
 
 
 
@@ -269,7 +271,9 @@ export default function Home() {
     return Array.from(protocolSet).map((protocolName) => protocolData[protocolName]);
   };
   const selectedProtocols = getProtocolsForSelectedChains();
-
+  useEffect(() => {
+    console.log("Selected Protocols:", selectedProtocols);
+  }, [selectedProtocols]);
   const handleWallet = () => {
     setWalletOpen(true)
   }
@@ -278,6 +282,20 @@ export default function Home() {
     setWalletOpen(false)
   }
 
+  const handleStake = () => {
+    setIsStaking(true);
+    setStakingSuccess(false);
+
+    setTimeout(() => {
+      setStakingSuccess(true);
+      setStakedTokens([
+        { protocol: 'Ankr', tokenAmount: '48 POL', stakedSince: '2024-11-09' },
+        { protocol: 'Marinade', tokenAmount: '5 SOL', stakedSince: '2024-11-09' },
+        { protocol: 'Tortuga', tokenAmount: '75 APT', stakedSince: '2024-11-09' },
+      ]);
+      setIsStaking(false);
+    }, 5000); // Simulating staking for 5 seconds
+  };
   type Network = {
     network_name: string;
     chain_id: string;
@@ -286,27 +304,27 @@ export default function Home() {
 
   return (
     <main className="min-h-screen py-12 items-center flex pb-20 flex-col relative overflow-hidden" style={{ backgroundImage: "url('/d.avif')" }} >
-      <div className='absolute mt-20  top-0 left-0 w-full h-full z-[0]'>
+      <div className='absolute mt-24  top-0 left-0 w-full h-full z-[-1]'>
   <div className='fixed w-full flex justify-center'>
     <InteractiveSharpTorusComponent />
   </div>
 </div>
       <FNavbar />
 
-      <div className="backdrop-blur-xl min-w-[px] mt-20  bg-white/10 rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
+      <div className=" min-w-[px] mt-20    overflow-hidden">
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col md:flex-row justify-between items-center 
           bg-white/10 
-          rounded-2xl p-6 text-center 
-          border border-white/20 
-          shadow-2xl"
+          rounded-2xl p-6 px-20 text-center 
+          
+          shadow-2xl backdrop-blur-xl"
         >
-          {oktoJwt && <h1 className="px-12 text-3xl text-black mb-4 md:mb-0">
+          {oktoJwt && <div className=""><h1 className="px-12 text-3xl text-black mb-4 md:mb-0">
             Frostboard
-          </h1>}
+          </h1></div>}
 
         </motion.header>
         {!oktoJwt && <div className="flex p-20 rounded-xl text-center items-center justify-center bg-gradient-to-br ">
@@ -314,7 +332,7 @@ export default function Home() {
             <div className=" animate-bounce text-black">
               <Snowflake size={48} />
             </div>
-            <p className="text-gray-900 text-lg ">Just a little login is what you need <br />to break the ice</p>
+            <p className="text-gray-900 text-lg ">A login is all you need <br />to break the ice</p>
             <p className="text-black"><br /> </p>
           </div>
         </div>}
@@ -322,7 +340,7 @@ export default function Home() {
 
         {portfolio ?
 
-          <main className="backdrop-blur-xl  rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col md:px-40 px-12 py-12">
+          <main className=" rounded-3xl overflow-hidden flex flex-col md:px-20 px-8 py-12">
             <header className="w-full max-w-9xl min-w-full flex justify-between items-center mb-8">
               <h1 className="text-white text-4xl font-extrabold"></h1>
               <div className="flex space-x-4">
@@ -369,7 +387,7 @@ export default function Home() {
 
               {/* Portfolio Card */}
               <motion.div
-                className="bg-white/10 shadow-lg rounded-lg p-6 transition-transform duration-300 hover:scale-105"
+                className="bg-white/10 shadow-lg backdrop-blur-sm rounded-lg p-6 transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
               >
                 <h2 className="text-xl text-gray-900 font-semibold mb-4">
@@ -423,7 +441,7 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                className=" text-gray-900 rounded-lg p-6 shadow-lg transition-transform duration-300 hover:scale-105"
+                className=" text-gray-900 backdrop-blur-sm rounded-lg p-6 shadow-lg transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
               ><h1 className="text-2xl">Token Allocation</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -713,7 +731,7 @@ export default function Home() {
 
               {/* Supported Networks Card */}
               <motion.div
-                className="bg-white/10 shadow-lg rounded-lg p-4 transition-transform duration-300 hover:scale-105"
+                className="bg-white/10 backdrop-blur-xl shadow-lg rounded-lg p-4 transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
               >
                 <h2 className="text-lg font-semibold text-gray-900 mb-2">
@@ -763,10 +781,10 @@ export default function Home() {
               </motion.div>
 
               <div
-                className=" shadow-lg rounded-lg p-4  "
+                className=" shadow-lg backdrop-blur-xl rounded-lg p-4  "
                 
               >
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900">Selected Protocols</h2>
+                <h2 className="text-2xl mb-4 text-gray-900">Selected Protocols</h2>
                 <motion.div
                 className=" rounded-lg p-4 transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
@@ -793,10 +811,68 @@ export default function Home() {
               </div>
 
               <motion.div
-                className="bg-white/10 shadow-lg rounded-lg p-4 transition-transform duration-300 hover:scale-105"
+                className="bg-white/10 shadow-lg backdrop-blur-sm rounded-lg p-4 transition-transform duration-300 hover:scale-101"
                 whileHover={{ scale: 1.05 }}
-              >
-                <TransactionForm />
+              > 
+<div className="flex flex-col items-center justify-center min-h-screen  p-6">
+      <h1 className="text-4xl text-black text-center mb-6">Liquid Staking</h1>
+
+      {/* Show Staking Simulation */}
+      {!stakingSuccess && !isStaking && (
+        <>
+          <TransactionForm selectedProtocols={selectedProtocols} />
+          <button
+            onClick={handleStake}
+            className="mt-6 py-3 px-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700"
+          >
+            Execute
+          </button>
+        </>
+      )}
+
+      {/* Show Success Message */}
+      {isStaking && (
+        <div className="text-lg font-semibold text-center text-gray-700">
+          Staking in progress... Please wait a moment.
+        </div>
+      )}
+
+      {stakingSuccess && (
+        <div className="text-lg text-center text-green-600 mb-6">
+          Successfully executed transaction
+        </div>
+      )}
+
+      {/* Staking Dashboard */}
+      {stakingSuccess && !isStaking && (
+        <div className="w-full p-6 rounded-lg shadow-lg">
+          <h2 className="text-3xl text-center text-gray-800 mb-6">Holdings</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {stakedTokens.map((stake, index) => {
+              const protocol = protocolData[stake.protocol]; // Accessing protocol data to get logo and info
+              return (
+                <div
+                  key={index}
+                  className="p-4 rounded-lg shadow-md flex items-center space-x-4"
+                >
+                  {/* Display the logo */}
+                  <img
+                    src={protocol.logo}
+                    alt={protocol.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div>
+                    <h3 className="text-xl text-black">{protocol.name}</h3>
+                    <p className="text-gray-900">Amount Staked: {stake.tokenAmount}</p>
+                    <p className="text-gray-900">Staked Since: {stake.stakedSince}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
               </motion.div>
             </div>
           </main>

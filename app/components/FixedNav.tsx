@@ -47,8 +47,8 @@ const FNavbar: React.FC = () => {
                         Frostboard
                     </Link>
 
-                    <Link href="/dashboard" className="text-white/80 hover:text-white transition-colors">
-                        Dashboard
+                    <Link href="/staking" className="text-white/80 hover:text-white transition-colors">
+                        Staking
                     </Link>
 
                     <Link href="/about" className="text-white/80 hover:text-white transition-colors">
@@ -73,10 +73,10 @@ const FNavbar: React.FC = () => {
                         ✕
                     </button>
                     <Link href="/frostboard" className="text-white/80 hover:text-blue-400 text-xl transition-colors">
-                        App
+                        Frostboard
                     </Link>
-                    <Link href="/dashboard" className="text-white/80 hover:text-purple-400 text-xl transition-colors">
-                        Dashboard
+                    <Link href="/staking" className="text-white/80 hover:text-purple-400 text-xl transition-colors">
+                        Staking
                     </Link>
                     <Link href="/about" className="text-white/80 hover:text-indigo-400 text-xl transition-colors">
                         About

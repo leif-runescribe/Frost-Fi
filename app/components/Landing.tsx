@@ -10,7 +10,7 @@ const GlassLandingPage = () => {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    const target = 766129153;
+    const target = 10085;
     const steps = 50;
     const increment = target / steps;
     let current = 0;
@@ -62,8 +62,8 @@ const GlassLandingPage = () => {
               <Link href="/frostboard" className="text-black hover:text-blue-400 transition-colors">
                 Frostboard
               </Link>
-              <Link href="/dashboard" className="text-black hover:text-purple-400 transition-colors">
-                Dashboard
+              <Link href="/staking" className="text-black hover:text-purple-400 transition-colors">
+                Staking
               </Link>
               <Link href="/about" className="text-black hover:text-indigo-400 transition-colors">
                 About
@@ -85,10 +85,10 @@ const GlassLandingPage = () => {
                 transition={{ duration: 2, delay: 0.2 }}
                 className="space-y-8"
               >
-                <h1 className="text-6xl font-semibold leading-tight bg-gradient-to-tr from-purple-600 via-blue-400 to-gray-200 bg-clip-text text-transparent">
+                <h1 className="md:text-6xl text-4xl font-semibold leading-tight bg-gradient-to-tr from-purple-600 via-blue-400 to-gray-200 bg-clip-text text-transparent">
                   Asset Management <span className="text-blue-800">*</span>
                   <br />
-                  <span className="text-5xl font-medium">Effortlessly Easy</span>
+                  <span className="md:text-5xl text-3xl font-medium">Effortlessly Easy</span>
                 </h1>
                 <p className="text-2xl text-gray-900 mt-4 max-w-xl">
   Simplifying multi-chain assets with FrostFin&apos;s abstraction for seamless transactions.
