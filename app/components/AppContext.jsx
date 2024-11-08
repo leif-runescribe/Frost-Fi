@@ -5,6 +5,7 @@ import { OktoProvider, BuildType } from "okto-sdk-react";
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
+
   const buildType = BuildType.SANDBOX
   const apiKey = process.env.NEXT_PUBLIC_OKTO_CLIENT_KEY 
   return (

@@ -1,5 +1,6 @@
 "use client";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
 
 export function LoginButton() {
   const { data: session } = useSession();
@@ -7,7 +8,7 @@ export function LoginButton() {
   const handleLogin = () => {
     session ? signOut() : signIn();
   };
-
+  
   return (
     <button
     className={`border border-transparent rounded px-4 py-2 transition transform duration-500 ease-in-out ${
