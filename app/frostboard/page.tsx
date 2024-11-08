@@ -87,7 +87,9 @@ export default function Home() {
 
   useEffect(() => {
     if (isLoggedIn) {
+      console.log('googel token: ', session?.id_token)
       handleAuthenticate()
+      console.log('okto token after handleauth: ', oktoJwt)
       fetchData()
     }
   }, [isLoggedIn]);
