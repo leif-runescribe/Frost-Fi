@@ -6,7 +6,7 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const buildType = BuildType.SANDBOX
-  const apiKey = process.env.NEXT_PUBLIC_OKTO_CLIENT_KEY 
+  const apiKey = process.env.OKTO_CLIENT_KEY 
   return (
     <AppContext.Provider value={{ apiKey,buildType}}>
       <OktoProvider apiKey={apiKey} buildType={buildType}>
