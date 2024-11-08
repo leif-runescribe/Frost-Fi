@@ -11,7 +11,6 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { getToken } from "next-auth/jwt";
 import { Wallet,  Box, Plus, Cross, CircleX, Loader, Snowflake, DollarSign, TrendingUp, Layers, BarChart2} from "lucide-react";
-
 import {
   Table,
   TableBody,
@@ -89,7 +88,7 @@ export default function Home() {
       return { result: "logout failed" };
     }
   }
-
+  console.log(oktoJwt)
   useEffect(() => {
     if (isLoggedIn) {
       handleAuthenticate()
