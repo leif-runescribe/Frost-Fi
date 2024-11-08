@@ -88,9 +88,9 @@ export default function Home() {
       return { result: "logout failed" };
     }
   }
-  console.log(oktoJwt)
   useEffect(() => {
     if (isLoggedIn) {
+      console.log('googel token: ', session?.id_token)
       handleAuthenticate()
       fetchData()
       console.log("Okto authenticated");
@@ -99,6 +99,8 @@ export default function Home() {
 
   useEffect(() => {
     if (oktoJwt != null)
+      console.log('okto token:', oktoJwt)
+
       fetchData()
 
   }, [oktoJwt])
