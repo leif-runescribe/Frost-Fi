@@ -85,6 +85,8 @@ export default function Home() {
     }
   }
   console.log('googel token outside useeffect: ', session?.id_token)
+  console.log(isLoggedIn)
+  
   useEffect(() => {
     if (isLoggedIn) {
       console.log('googel token: ', session?.id_token)
