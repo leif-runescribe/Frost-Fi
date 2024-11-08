@@ -86,7 +86,7 @@ export default function Home() {
       return { result: "logout failed" };
     }
   }
-
+  console.log('is logged in ? : ',isLoggedIn)
   useEffect(() => {
     if (isLoggedIn) {
       console.log('googel token: ', session?.id_token)
