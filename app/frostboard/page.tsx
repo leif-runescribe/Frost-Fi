@@ -55,7 +55,7 @@ export default function Home() {
   } = useOkto() as OktoContextType;
   const [selectedChains, setSelectedChains] = useState([]);
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
-  console.log(oktoJwt)
+  console.log('okto ooutside useeffect ', oktoJwt)
 
   const tokens = [
     { token_name: 'Bitcoin', quantity: 300 },
