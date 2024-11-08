@@ -55,7 +55,7 @@ export default function Home() {
     getTheme,
   } = useOkto() as OktoContextType;
   const [selectedChains, setSelectedChains] = useState([]);
-
+  console.log('okto key: ',process.env.NEXT_PUBLIC_OKTO_CLIENT_KEY)
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
   console.log('GOOGLE IDTOKEN: ', idToken)
 
