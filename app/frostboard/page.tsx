@@ -55,13 +55,7 @@ export default function Home() {
   } = useOkto() as OktoContextType;
   const [selectedChains, setSelectedChains] = useState([]);
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
-  console.log('okto ooutside useeffect ', oktoJwt)
 
-  const tokens = [
-    { token_name: 'Bitcoin', quantity: 300 },
-    { token_name: 'Ethereum', quantity: 200 },
-    { token_name: 'Polkadot', quantity: 100 },
-  ];
   async function handleAuthenticate(): Promise<any> {
     if (!idToken) {
       return { result: false, error: "No google login" };
@@ -90,6 +84,7 @@ export default function Home() {
       return { result: "logout failed" };
     }
   }
+  console.log('googel token outside useeffect: ', session?.id_token)
   useEffect(() => {
     if (isLoggedIn) {
       console.log('googel token: ', session?.id_token)
@@ -134,7 +129,7 @@ export default function Home() {
         const data = response.data.data;
         setPortfolio(data); // Store networks in state
       } catch (err) {
-        console.error("Error fetching networks", err);
+        console.error("Error fetching portfolio", err);
       }
     };
     const fetchWallets = async () => {
@@ -214,7 +209,6 @@ export default function Home() {
         setLoading(false);
       }
     };
-    fetchUserDetails()
     fetchWallets()
     fetchingNetworks()
     fetchingPortfolio()
