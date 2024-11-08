@@ -49,4 +49,9 @@ interface DashboardProps {
       data: string; // Optional data, for smart contract interaction or token transfer
     };
   }
-      
+  
+  interface ProtocolInfo {
+    name: string;
+    stakingInfo: string;
+    logo: string;
+  }
