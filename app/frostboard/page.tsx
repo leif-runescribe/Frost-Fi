@@ -57,6 +57,8 @@ export default function Home() {
   const [selectedChains, setSelectedChains] = useState([]);
 
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
+  console.log('GOOGLE IDTOKEN: ', idToken)
+
   async function handleAuthenticate(): Promise<any> {
     console.log('handle authenticate working...')
     if (!idToken) {
