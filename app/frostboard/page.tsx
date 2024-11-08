@@ -55,8 +55,8 @@ export default function Home() {
     getTheme,
   } = useOkto() as OktoContextType;
   const [selectedChains, setSelectedChains] = useState([]);
+
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
-  console.log('client id:',process.env.NEXT_PUBLIC_OKTO_CLIENT_KEY)
   async function handleAuthenticate(): Promise<any> {
     console.log('handle authenticate working...')
     if (!idToken) {
@@ -73,7 +73,7 @@ export default function Home() {
           console.error("Authentication error:", error);
           resolve({ result: false, error });
         } else{
-          console.log('something in handleauthenticae', idToken)
+          console.log('something in handleauthenticate', idToken)
         }
       });
     });
@@ -86,10 +86,10 @@ export default function Home() {
       return { result: "logout failed" };
     }
   }
-  console.log('is logged in ? : ',isLoggedIn)
+  console.log('is logged in ?',isLoggedIn)
   useEffect(() => {
     if (isLoggedIn) {
-      console.log('googel token: ', session?.id_token)
+      console.log('okto is authed', session?.id_token)
       handleAuthenticate()
       fetchData()
     }
