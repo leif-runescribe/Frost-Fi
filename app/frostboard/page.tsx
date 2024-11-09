@@ -289,9 +289,9 @@ export default function Home() {
     setTimeout(() => {
       setStakingSuccess(true);
       setStakedTokens([
-        { protocol: 'Ankr', tokenAmount: '48 POL', stakedSince: '2024-11-09' },
-        { protocol: 'Marinade', tokenAmount: '5 SOL', stakedSince: '2024-11-09' },
-        { protocol: 'Tortuga', tokenAmount: '75 APT', stakedSince: '2024-11-09' },
+        { protocol: 'Ankr', tokenAmount: '48 POL', stakedSince: '2024-11-09', stakedToken: 'ankrPOL' },
+        { protocol: 'Marinade', tokenAmount: '5 SOL', stakedSince: '2024-11-09', stakedToken: 'msol' },
+        { protocol: 'Tortuga', tokenAmount: '1000 APT', stakedSince: '2024-11-09', stakedToken: 'tapt' },
       ]);
       setIsStaking(false);
     }, 5000); // Simulating staking for 5 seconds
@@ -811,7 +811,7 @@ export default function Home() {
               </div>
 
               <motion.div
-                className="bg-white/10 shadow-lg backdrop-blur-sm rounded-lg p-4 transition-transform duration-300 hover:scale-101"
+                className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
               > 
 <div className="flex flex-col items-center justify-center min-h-screen  p-6">
@@ -825,8 +825,7 @@ export default function Home() {
             onClick={handleStake}
             className="mt-6 py-3 px-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700"
           >
-            Execute
-          </button>
+Execute          </button>
         </>
       )}
 
@@ -848,27 +847,20 @@ export default function Home() {
         <div className="w-full p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl text-center text-gray-800 mb-6">Holdings</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {stakedTokens.map((stake, index) => {
-              const protocol = protocolData[stake.protocol]; // Accessing protocol data to get logo and info
-              return (
-                <div
-                  key={index}
-                  className="p-4 rounded-lg shadow-md flex items-center space-x-4"
-                >
-                  {/* Display the logo */}
-                  <img
-                    src={protocol.logo}
-                    alt={protocol.name}
-                    className="w-12 h-12 rounded-full"
-                  />
-                  <div>
-                    <h3 className="text-xl text-black">{protocol.name}</h3>
-                    <p className="text-gray-900">Amount Staked: {stake.tokenAmount}</p>
-                    <p className="text-gray-900">Staked Since: {stake.stakedSince}</p>
-                  </div>
-                </div>
-              );
-            })}
+          {stakedTokens.map((stake, index) => (
+  <div key={index} className="p-4 rounded-lg shadow-md flex items-center space-x-4">
+    
+    <div>
+      <h3 className="text-xl text-black">{stake.protocol}</h3>
+      <p className="text-gray-900">Amount Staked: {stake.tokenAmount}</p>
+      <p className="text-gray-900">Staked Token: {stake.stakedToken}</p> {/* Displaying the staked token */}
+      <p className="text-gray-900">Staked Since: {stake.stakedSince}</p>
+    </div>
+
+  </div>
+))}    <h1 className="py-4 text-black">these tokens will be supported by okto soon...</h1>
+
+
           </div>
         </div>
       )}
