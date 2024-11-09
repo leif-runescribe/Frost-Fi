@@ -98,7 +98,7 @@ export default function Home() {
   }
   useEffect(() => {
     if (idToken) {
-      console.log('Google login success - ', idToken);
+      // console.log('Google login success - ', idToken);
       handleAuthenticate(); // Handle Okto authentication
     }
   }, [idToken]);
@@ -106,7 +106,7 @@ export default function Home() {
   // Once Okto JWT is available, fetch data
   useEffect(() => {
     if (oktoJwt) {
-      console.log('Okto JWT available:', oktoJwt);
+      // console.log('Okto JWT available:', oktoJwt);
       fetchData(); // Fetch the data using Okto JWT
     }
   }, [oktoJwt]);
