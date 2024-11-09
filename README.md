@@ -1,6 +1,6 @@
-# FrostFin 🌊 
+# FrostFin  
 
-![FrostFin Banner](/api/placeholder/1200/300)
+(https://cdn.pixabay.com/photo/2022/04/27/01/11/weather-7159426_1280.png)
 
 > Seamless cross-chain staking, simplified. 
 
@@ -10,51 +10,58 @@
 
 ## 🌟 Overview
 
-FrostFin is a next-generation DeFi platform that revolutionizes the cross-chain staking experience. By leveraging chain abstraction through Okto SDK, we make staking accessible across multiple blockchain ecosystems with a single, intuitive interface.
+FrostFin is a DeFi platform that simplies the staking experience. By leveraging chain abstraction through Okto SDK, we make staking accessible across multiple blockchain ecosystems with a single, intuitive interface.
 
 ### 🎯 Key Features
 
 - **Universal Staking Interface**: Stake assets across multiple chains from one dashboard
 - **Chain Abstraction**: Powered by Okto SDK for seamless cross-chain interactions
 - **Multi-Chain Support**: 
-  - 🔷 Ethereum
   - ⭕ Solana (via Marinade)
   - 🔵 Aptos (via Tortuga)
   - 🟣 Polygon (via Ankr)
-- **Simplified User Experience**: No need for multiple wallets or complex technical knowledge
+  - 🔷 Base (Coming...)
+- **Simplified User Experience**: No need to handle multiple wallets or complex technical knowledge. 
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-```bash
+bash
 node >= 18.0.0
 npm >= 8.0.0
-```
+
 
 ### Installation
 
 1. Clone the repository:
-```bash
+bash
 git clone https://github.com/yourusername/frostfin.git
 cd frostfin
-```
+
 
 2. Install dependencies:
-```bash
+bash
 npm install
-```
+
 
 3. Set up environment variables:
-```bash
-cp .env.example .env.local
-# Add your configuration values to .env.local
-```
+bash
+cp .env.example .env
+# Add your configuration values to .env
+GOOGLE_CLIENT_ID =
+
+GOOGLE_CLIENT_SECRET =
+ 
+NEXTAUTH_SECRET =
+
+NEXT_PUBLIC_OKTO_CLIENT_KEY =
+
 
 4. Run the development server:
-```bash
+bash
 npm run dev
-```
+
 
 ## 🏗️ Architecture
 
@@ -68,32 +75,29 @@ FrostFin is built with modern technologies and best practices:
   - Tortuga (Aptos)
   - Ankr (Polygon)
 
-## 🔒 Security
+## 🏦 Learn more
 
-- All smart contract interactions are handled through audited protocols
-- Chain abstraction layer provides additional security through standardized interfaces
-- Regular security audits and updates
+- [Marinade](https://marinade.finance/)
+- [Tortuga Finance](https://tortuga.finance/)
+- [Marinade](https://marinade.finance/)
 
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
 5. Open a Pull Request
 
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🌐 Resources
 
-- [Documentation](https://docs.frostfin.io)
-- [API Reference](https://api.frostfin.io)
-- [Community Discord](https://discord.gg/frostfin)
+- [NextJS Docs](https://nextjs.org/docs)
+- [Okto React Docs](https://docs.okto.tech/docs/react-sdk/getting-started/overview-okto-react)
+- [API Reference](https://docs.okto.tech/api-docs)
 
 ---
 
-<p align="center">Built with ❄️ by the FrostFin Team</p>
+<p align="center">Built with ❄️ by the FrostFin Team</p>https 
