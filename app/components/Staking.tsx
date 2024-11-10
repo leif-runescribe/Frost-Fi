@@ -87,7 +87,7 @@ const StakingEducation = () => {
                 description: "Earn annual yields ranging from 5% to 12% depending on the network"
               }
             ].map((item, index) => (
-              <motion.div
+              <motion.div key={index}
                 className="bg-white/10 backdrop-blur-xl shadow-lg rounded-xl p-4 transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
               >
