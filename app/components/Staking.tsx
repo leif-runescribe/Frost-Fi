@@ -156,7 +156,7 @@ const StakingEducation = () => {
               <div>
                 <h3 className="text-2xl mb-4">Chain Abstraction Technology</h3>
                 <p className="text-gray-100 mb-6">
-                  FrostFin leverages Okto's advanced chain abstraction to simplify multi-chain staking. 
+                  FrostFin leverages Okto&apos;s advanced chain abstraction to simplify multi-chain staking. 
                   Manage all your staked assets across Solana, Aptos, and Polygon from a single dashboard.
                 </p>
                 <Link href='/frostboard'><motion.button
