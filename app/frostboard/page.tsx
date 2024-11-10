@@ -1,9 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { LoginButton } from "../components/LoginButton";
 import { useOkto, OktoContextType, BuildType, OktoProvider } from "okto-sdk-react";
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import TransferTokens from "../components/TransferTokens";
 import SendRawTransaction from "../components/SendRawTransaction";
 import FNavbar from "../components/FixedNav";
@@ -34,20 +32,19 @@ import InteractiveSharpTorusComponent from "../components/Sphere";
 
 export default function Home() {
 
-
+  //okto data state
   const [portfolio, setPortfolio] = useState(null);
   const [wallets, setWallets] = useState([]);
   const [supportedNetworks, setSupportedNetworks] = useState<string>([]);
   const [supportedTokens, setSupportedTokens] = useState([]);
-  const [userDetails, setUserDetails] = useState(null);
   const [orders, setOrders] = useState([]);
-  const [nftOrders, setNftOrders] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   const { data: session } = useSession();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [oktoJwt, setOktoJwt] = useState<string | null>(null)
   const [isWalletopen, setWalletOpen] = useState(false)
 
+  //staking state
   const [isStaking, setIsStaking] = useState(false);
   const [stakingSuccess, setStakingSuccess] = useState(false);
   const [stakedTokens, setStakedTokens] = useState<any[]>([]);
@@ -119,6 +116,7 @@ export default function Home() {
 
 
   //fetch all that
+  {/* OKTO API CALLS */}
   const fetchData = async () => {
     const fetchingNetworks = async () => {
       try {
@@ -186,22 +184,7 @@ export default function Home() {
         console.error("Error creating wallet", err);
       }
     };
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.get('https://sandbox-api.okto.tech/api/v1/user_from_token', {
-          headers: {
-            'Authorization': `Bearer ${oktoJwt}`,
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const data = response.data.data;
-
-        setUserDetails(data); // Store networks in state
-      } catch (err) {
-        console.error("Error fetching wallet", err);
-      }
-    }
+   
     const fetchPortfolioActivity = async () => {
       try {
         const response = await axios.get<PortfolioResponse>(

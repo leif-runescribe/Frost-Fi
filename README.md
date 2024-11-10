@@ -27,9 +27,17 @@ FrostFin is a DeFi platform that simplies the staking experience. By leveraging 
 
 ### Prerequisites
 
-bash
+
+```console
+foo@bar:~$ whoami
+foo
+```
+
+```console
 node >= 18.0.0
 npm >= 8.0.0
+```
+
 
 
 ### Installation

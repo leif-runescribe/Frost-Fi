@@ -22,7 +22,7 @@ export const convertQuantity = (networkName: string, quantity: string): string =
         throw new Error(`Unsupported network: ${networkName}`);
     }
   
-    // Convert the quantity from base units to the human-readable value
+    // Convert quantity to the human-readable value
     const humanReadableQuantity = (parseInt(quantity) / conversionFactor).toString();
   
     return humanReadableQuantity;
