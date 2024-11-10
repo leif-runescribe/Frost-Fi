@@ -52,7 +52,7 @@ const StakingEducation = () => {
         transition={{ duration: 1 }}
       >
         <h1 className="lg:text-6xl md:mt-20 mt-40 text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-          Understanding Crypto Staking
+          Understanding Crypto Liquid Staking
         </h1>
         <p className="text-xl text-gray-900 font-medium max-w-2xl mb-8">
           Discover how to earn passive income by participating in network security
@@ -68,23 +68,28 @@ const StakingEducation = () => {
       {/* What is Staking Section */}
       <motion.section className="py-20 md:px-8" {...fadeIn}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl text-black mb-12 text-center">What is Staking?</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-4xl text-black mb-12 text-center">What is Liquid Staking?</h2>
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
                 icon: <Coins className="w- h-8" />,
-                title: "Lock & Earn",
-                description: "Lock your crypto assets to earn regular rewards while supporting network security"
+                title: "Stake & Earn",
+                description: "Stake your native crypto assets in a staking protocol to contribute to network security and earn regular staking rewards."
               },
               {
                 icon: <Shield className="w-8 h-8" />,
-                title: "Secure Networks",
-                description: "Validators process transactions and secure the network using staked tokens"
+                title: "Secure the Network",
+                description: "Validators use the staked tokens to validate transactions and secure the blockchain network. Your tokens play a key role in maintaining the integrity of the network."
+              },
+              {
+                icon: <Coins className="w- h-8" />,
+                title: "Get staked tokens",
+                description: "In return for staking, you receive liquid staked tokens, which represent your staked assets. These tokens are typically tradable and can be used across decentralized finance (DeFi) applications."
               },
               {
                 icon: <Wallet className="w-8 h-8" />,
                 title: "Passive Income",
-                description: "Earn annual yields ranging from 5% to 12% depending on the network"
+                description: " They are fully liquid, meaning you can trade or exchange them at any time for the underlying native asset plus accumulated rewards."
               }
             ].map((item, index) => (
               <motion.div key={index}
@@ -93,7 +98,7 @@ const StakingEducation = () => {
               >
                 <div className="text-blue-900 mb-4">{item.icon}</div>
                 <h3 className="text-xl text-black mb-2">{item.title}</h3>
-                <p className="text-gray-900">{item.description}</p>
+                <p className="text-gray-900 text-sm">{item.description}</p>
               </motion.div>
             ))}
           </div>

@@ -430,7 +430,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Left half - Pie Chart */}
                   <div className="flex items-center justify-center">
-                    {portfolio.tokens>0?(<FundAllocationPieChart tokens={portfolio.tokens}/>):(<p className="text-red-600">Go to view wallets and fund the wallets you need</p>)}
+                    {portfolio.tokens>0?(<FundAllocationPieChart tokens={portfolio.tokens}/>):(<p className="text-red-600 py-6 md:py-0 ">Go to view wallets and fund the wallets you need</p>)}
                   </div>
 
                   {/* Right half - Analytics Section */}

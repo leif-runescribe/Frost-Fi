@@ -8,6 +8,7 @@ const DashboardPage = () => {
     <div style={{ backgroundImage: "url('/d.avif')"}} className="min-h-screen  text-white">
 
       <FNavbar />
+      <StakingEducation/>
       </div>
   );
 };
