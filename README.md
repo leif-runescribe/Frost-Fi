@@ -1,16 +1,16 @@
 # FrostFin  
 
-(https://cdn.pixabay.com/photo/2022/04/27/01/11/weather-7159426_1280.png)
 
-> Seamless cross-chain staking, simplified. 
+> Seamless, abstracted multi-chain DeFi, simplified. 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Next.js](https://img.shields.io/badge/Next.js-13.0-black)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC)](https://tailwindcss.com/)
+[![Okto SDk](https://img.shields.io/badge/Okto-1.0-blue)](https://play-lh.googleusercontent.com/rEjUSJH4e-BCQMo4p1mkeMUYXjLEs_TZ6AgeKhtozBwj7oVIcbcCvchnUuAwk9_Bunk)
 
 ## 🌟 Overview
 
-FrostFin is a DeFi platform that simplies the staking experience. By leveraging chain abstraction through Okto SDK, we make staking accessible across multiple blockchain ecosystems with a single, intuitive interface.
+FrostFin is a DeFi platform that simplies the staking experience. By leveraging chain abstraction through Okto SDK, we make liquid staking accessible across multiple blockchain ecosystems with a single, intuitive interface.
 
 ### 🎯 Key Features
 

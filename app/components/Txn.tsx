@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// Define the protocol data and its associated networks
 const protocolData = {
   Tortuga: 'aptos',
   EVM: 'evm',

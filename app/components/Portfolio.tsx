@@ -2,28 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 // Define the types for the props
-interface DashboardProps {
-  bearerToken: string; // Accept the Bearer token as a prop
-}
 
-interface Activity {
-  description: string;
-  order_state: string;
-  order_type: string;
-  token_name: string;
-  network_name: string;
-  quantity: string;
-  tx_hash: string;
-  timestamp: string;
-}
-
-interface PortfolioResponse {
-  status: string;
-  data: {
-    total: number;
-    activity: Activity[];
-  };
-}
 
 const Dashboard: React.FC<DashboardProps> = ({ bearerToken }) => {
   const [activities, setActivities] = useState<Activity[]>([]);

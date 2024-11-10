@@ -28,6 +28,7 @@ import FundAllocationPieChart from "../components/Pie";
 import TransactionForm from "../components/Txn";
 import { protocolData } from "../utils/Staking";
 import InteractiveSharpTorusComponent from "../components/Sphere";
+import TransactionExecutor from "../components/Exec";
 
 
 export default function Home() {
@@ -63,7 +64,7 @@ export default function Home() {
 
   const [selectedChains, setSelectedChains] = useState([]);
   const idToken = useMemo(() => (session ? session.id_token : null), [session]);
-  
+
   async function handleAuthenticate(): Promise<any> {
     console.log('handle authenticate working...')
     if (!idToken) {
@@ -116,7 +117,7 @@ export default function Home() {
 
 
   //fetch all that
-  {/* OKTO API CALLS */}
+  {/* OKTO API CALLS */ }
   const fetchData = async () => {
     const fetchingNetworks = async () => {
       try {
@@ -184,7 +185,7 @@ export default function Home() {
         console.error("Error creating wallet", err);
       }
     };
-   
+
     const fetchPortfolioActivity = async () => {
       try {
         const response = await axios.get<PortfolioResponse>(
@@ -288,10 +289,10 @@ export default function Home() {
   return (
     <main className="min-h-screen py-12 items-center flex pb-20 flex-col relative overflow-hidden" style={{ backgroundImage: "url('/d.avif')" }} >
       <div className='absolute mt-24  top-0 left-0 w-full h-full z-[-1]'>
-  <div className='fixed w-full flex justify-center'>
-    <InteractiveSharpTorusComponent />
-  </div>
-</div>
+        <div className='fixed w-full flex justify-center'>
+          <InteractiveSharpTorusComponent />
+        </div>
+      </div>
       <FNavbar />
 
       <div className=" min-w-[px] mt-20    overflow-hidden">
@@ -430,7 +431,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Left half - Pie Chart */}
                   <div className="flex items-center justify-center">
-                    {portfolio.tokens>0?(<FundAllocationPieChart tokens={portfolio.tokens}/>):(<p className="text-red-600 py-6 md:py-0 ">Go to view wallets and fund the wallets you need</p>)}
+                    {portfolio.tokens > 0 ? (<FundAllocationPieChart tokens={portfolio.tokens} />) : (<p className="text-red-600 py-16 lg:py-0 ">Go to view wallets and fund the wallets you need</p>)}
                   </div>
 
                   {/* Right half - Analytics Section */}
@@ -453,7 +454,7 @@ export default function Home() {
                         <DollarSign className="text-green-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Investment Value</h4>
-                          <p className="text-gray-900 ">{portfolio.tokens>0? <p>Calculating</p>: <p>-</p>}</p>
+                          <p className="text-gray-900 ">{portfolio.tokens > 0 ? <p>Calculating</p> : <p>-</p>}</p>
                         </div>
                       </div>
 
@@ -462,7 +463,7 @@ export default function Home() {
                         <TrendingUp className="text-purple-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Stake</h4>
-                          <p className="text-green-900 ">{portfolio.tokens>0? <p>Calculating</p>: <p>-</p>}</p>
+                          <p className="text-green-900 ">{portfolio.tokens > 0 ? <p>Calculating</p> : <p>-</p>}</p>
                         </div>
                       </div>
 
@@ -471,7 +472,7 @@ export default function Home() {
                         <BarChart2 className="text-yellow-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Allocation</h4>
-                          <p className="text-gray-700 "> {portfolio.tokens>0? <p>{portfolio.tokens.map((token) => token.token_name).join(", ")}</p>: <p>-</p>}   
+                          <p className="text-gray-700 "> {portfolio.tokens > 0 ? <p>{portfolio.tokens.map((token) => token.token_name).join(", ")}</p> : <p>-</p>}
                           </p>
                         </div>
                       </div>
@@ -603,7 +604,7 @@ export default function Home() {
 
                       </TableHead>
                       <TableBody>
-                        {activities && activities.length>0 ? (activities.map((activity, index) => (
+                        {activities && activities.length > 0 ? (activities.map((activity, index) => (
                           <TableRow
                             key={index}
                             sx={{
@@ -705,7 +706,7 @@ export default function Home() {
                             </TableCell>
 
                           </TableRow>
-                        ))):(<TableRow>
+                        ))) : (<TableRow>
                           <div className="text-center text-black py-5 text-2xl" >No activity yet</div>
                         </TableRow>)}
                       </TableBody>
@@ -767,89 +768,96 @@ export default function Home() {
 
               <div
                 className=" shadow-lg backdrop-blur-xl rounded-lg p-4  "
-                
+
               >
                 <h2 className="text-2xl mb-4 text-gray-900">Selected Protocols</h2>
                 <motion.div
-                className=" rounded-lg p-4 transition-transform duration-100 hover:scale-102"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {selectedProtocols.length === 0 ? (
-                    <p className="text-black">No protocols selected. Please select a chain to enable Chain-specific protocols</p>
-                  ) : (
-                    selectedProtocols.map((protocol) => (
-                      <div
-                        key={protocol.name}
-                        className="text-gray-900 shadow-md rounded-lg p-4 flex items-center space-x-4"
-                      >
-                        <img src={protocol.logo} alt={`${protocol.name} logo`} className="w-12 h-12" />
-                        <div>
-                          <h3 className="text-xl font-bold">{protocol.name}</h3>
-                          <p className="text-gray-600">{protocol.stakingInfo}</p>
+                  className=" rounded-lg p-4 transition-transform duration-100 hover:scale-102"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {selectedProtocols.length === 0 ? (
+                      <p className="text-black">No protocols selected. Please select a chain to enable Chain-specific protocols</p>
+                    ) : (
+                      selectedProtocols.map((protocol) => (
+                        <div
+                          key={protocol.name}
+                          className="text-gray-900 shadow-md rounded-lg p-4 flex items-center space-x-4"
+                        >
+                          <img src={protocol.logo} alt={`${protocol.name} logo`} className="w-12 h-12" />
+                          <div>
+                            <h3 className="text-xl font-bold">{protocol.name}</h3>
+                            <p className="text-gray-600">{protocol.stakingInfo}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))
-                  )}
-                </div>
+                      ))
+                    )}
+                  </div>
                 </motion.div>
               </div>
 
               <motion.div
                 className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-100 hover:scale-102"
                 whileHover={{ scale: 1.02 }}
-                >
-<div className="flex flex-col items-center justify-center min-h-screen  p-6">
-      <h1 className="text-4xl text-black text-center mb-6">Liquid Staking</h1>
+              >
+                <div className="flex flex-col items-center justify-center min-h-screen  p-6">
+                  <h1 className="text-4xl text-black text-center mb-6">Liquid Staking</h1>
 
-      {/* Show Staking Simulation */}
-      {!stakingSuccess && !isStaking && (
-        <>
-          <TransactionForm selectedProtocols={selectedProtocols} />
-          <button
-            onClick={handleStake}
-            className="mt-6 py-3 px-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700"
-          >
-Execute          </button>
-        </>
-      )}
+                  {/* Show Staking Simulation */}
+                  {!stakingSuccess && !isStaking && (
+                    <>
+                      <TransactionForm selectedProtocols={selectedProtocols} />
+                      <button
+                        onClick={handleStake}
+                        className="mt-6 py-3 px-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700"
+                      >
+                        Execute          </button>
+                    </>
+                  )}
 
-      {/* Show Success Message */}
-      {isStaking && (
-        <div className="text-lg font-semibold text-center text-gray-700">
-          Staking in progress... Please wait a moment.
-        </div>
-      )}
+                  {/* Show Success Message */}
+                  {isStaking && (
+                    <div className="text-lg font-semibold text-center text-gray-700">
+                      Staking in progress... Please wait a moment.
+                    </div>
+                  )}
 
-      {stakingSuccess && (
-        <div className="text-lg text-center text-green-600 mb-6">
-          Successfully executed transaction
-        </div>
-      )}
+                  {stakingSuccess && (
+                    <div className="text-lg text-center text-green-600 mb-6">
+                      Successfully executed transaction
+                    </div>
+                  )}
 
-      {/* Staking Dashboard */}
-      {stakingSuccess && !isStaking && (
-        <div className="w-full p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl text-center text-gray-800 mb-6">Holdings</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {stakedTokens.map((stake, index) => (
-  <div key={index} className="p-4 rounded-lg shadow-md flex items-center space-x-4">
-    
-    <div>
-      <h3 className="text-xl text-black">{stake.protocol}</h3>
-      <p className="text-gray-900">Amount Staked: {stake.tokenAmount}</p>
-      <p className="text-gray-900">Staked Token: {stake.stakedToken}</p> {/* Displaying the staked token */}
-      <p className="text-gray-900">Staked Since: {stake.stakedSince}</p>
-    </div>
+                  {/* Staking Dashboard */}
+                  {stakingSuccess && !isStaking && (
+                    <div className="w-full p-6 rounded-lg shadow-lg">
+                      <h2 className="text-3xl text-center text-gray-800 mb-6">Holdings</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {stakedTokens.map((stake, index) => (
+                          <div key={index} className="p-4 rounded-lg shadow-md flex items-center space-x-4">
 
-  </div>
-))}    <h1 className="py-4 text-black">these tokens will be supported by okto soon...</h1>
+                            <div>
+                              <h3 className="text-xl text-black">{stake.protocol}</h3>
+                              <p className="text-gray-900">Amount Staked: {stake.tokenAmount}</p>
+                              <p className="text-gray-900">Staked Token: {stake.stakedToken}</p> {/* Displaying the staked token */}
+                              <p className="text-gray-900">Staked Since: {stake.stakedSince}</p>
+                            </div>
+
+                          </div>
+                        ))}    <h1 className="py-4 text-black">these tokens will be supported by okto soon...</h1>
 
 
-          </div>
-        </div>
-      )}
-    </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
+              >
+                <TransactionExecutor/>
               </motion.div>
             </div>
           </main>

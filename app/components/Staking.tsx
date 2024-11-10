@@ -133,11 +133,11 @@ const StakingEducation = () => {
               </li>
               <li className="flex justify-between">
                 <span className="text-gray-900">Users</span>
-                <span className="text-teal-700">{network.users}</span>
+                <span className="text-teal-900">{network.users}</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-gray-900">Total Staked</span>
-                <span className="text-teal-700">{network.totalStaked}</span>
+                <span className="text-teal-900">{network.totalStaked}</span>
               </li>
               <li className="flex justify-between">
                 <span className="text-gray-900">TVL</span>

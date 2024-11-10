@@ -12,6 +12,7 @@ import {
 import { LineChart, XAxis, YAxis, Line, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { Tooltip } from '@mui/material';
 import Link from 'next/link';
+
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -72,12 +73,11 @@ const FullLandingPage = () => {
 
   return (
     <div style={{ backgroundImage: "url('/d.avif')" }} className="min-h-screen  from-blue-950 via-gray-900 to-black">
-      {/* Animated background elements */}
 
 
       {/* Main glass container */}
       <div className="relative min-h-screen mx-auto max-w-7xl my- px-4 space-y-32">
-        {/* Main glass panel */}
+        {/* lil glass panel */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -87,11 +87,10 @@ const FullLandingPage = () => {
         >
 
 
-          {/* Previous content remains the same until Features section */}
-          {/* ... (Previous content from the last example) ... */}
+          {/* ... later ... */}
         </motion.div>
 
-        {/* Statistics Section */}
+        {/* Stats */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -114,7 +113,7 @@ const FullLandingPage = () => {
           </div>
         </motion.section>
 
-        {/* How It Works Section */}
+        {/* How It Works  */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -177,7 +176,7 @@ const FullLandingPage = () => {
           </div>
         </motion.section>
 
-        {/* Market Overview Section */}
+        {/* Market Overview  */}
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -237,7 +236,6 @@ const FullLandingPage = () => {
                     itemStyle={{ color: '#fff' }}
                   />
 
-                  {/* Total Staked Line */}
                   <Line
                     type="monotone"
                     dataKey="totalStaked"
@@ -248,7 +246,6 @@ const FullLandingPage = () => {
                     isAnimationActive={true}
                   />
 
-                  {/* Active Stakers Line */}
                   <Line
                     type="monotone"
                     dataKey="activeStakers"
@@ -259,7 +256,6 @@ const FullLandingPage = () => {
                     isAnimationActive={true}
                   />
 
-                  {/* Average Reward Yield Line */}
                   <Line
                     type="monotone"
                     dataKey="avgRewardYield"
@@ -270,7 +266,6 @@ const FullLandingPage = () => {
                     isAnimationActive={true}
                   />
 
-                  {/* Gradient Definitions */}
                   <defs>
                     <linearGradient id="stakedGradient" x1="0" y1="0" x2="1" y2="1">
                       <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
@@ -291,7 +286,6 @@ const FullLandingPage = () => {
             </motion.div>
           </div>
         </motion.section>
-        {/* Security Features */}
         <motion.div
                 className="bg-white/10 backdrop-blur-xl shadow-lg rounded-lg p-4 transition-transform duration-300 hover:scale-105"
                 whileHover={{ scale: 1.05 }}
@@ -375,10 +369,12 @@ const FullLandingPage = () => {
               <ArrowUpRight className="w-4 h-4" />
             </button>
             </Link>
+        <a href="https://github.com/leif-runescribe/Frost-Fi"  target="_blank" rel="noopener noreferrer">
             <button className="px-8 py-4 bg-black/50 hover:bg-black/30 border border-white/10 rounded-lg font-medium text-gray-900 transition-all flex items-center space-x-2">
               <GithubIcon className="w-4 h-4" />
               <span>View Source</span>
             </button>
+            </a>
           </div>
         </motion.section>
       </div>

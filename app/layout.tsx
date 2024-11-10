@@ -5,13 +5,17 @@ import "./globals.css";
 import AppProvider from "./components/providers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import InteractiveSharpTorusComponent from "./components/Sphere";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Okto React SDK",
-  description: "Okto React SDK",
+  title: "Frost-Fin",
+  description: "Your gateway to instant DeFi",
+  icons:{
+    icon:['/favicon.ico?v=4'],
+    apple:['/apple-touch-icon.png?v=4'],
+    shortcut: ['//apple-touch-icon.png?v=4']
+  }
 };
 
 export default async function RootLayout({
