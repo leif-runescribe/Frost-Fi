@@ -370,8 +370,8 @@ export default function Home() {
 
               {/* Portfolio Card */}
               <motion.div
-                className="bg-white/10 shadow-lg backdrop-blur-sm rounded-lg p-6 transition-transform duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
+                className="bg-white/10 shadow-lg backdrop-blur-sm rounded-lg p-6 transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
               >
                 <h2 className="text-xl text-gray-900 font-semibold mb-4">
                   <Wallet className="inline-block mr-2" /> Portfolio
@@ -424,13 +424,13 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                className=" text-gray-900 backdrop-blur-sm rounded-lg p-6 shadow-lg transition-transform duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
+                className=" text-gray-900 backdrop-blur-sm rounded-lg p-6 shadow-lg transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
               ><h1 className="text-2xl">Token Allocation</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Left half - Pie Chart */}
                   <div className="flex items-center justify-center">
-                    <FundAllocationPieChart tokens={portfolio.tokens} />
+                    {portfolio.tokens>0?(<FundAllocationPieChart tokens={portfolio.tokens}/>):(<p className="text-red-600">Go to view wallets and fund the wallets you need</p>)}
                   </div>
 
                   {/* Right half - Analytics Section */}
@@ -453,7 +453,7 @@ export default function Home() {
                         <DollarSign className="text-green-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Investment Value</h4>
-                          <p className="text-gray-900 ">102.9</p>
+                          <p className="text-gray-900 ">{portfolio.tokens>0? <p>Calculating</p>: <p>-</p>}</p>
                         </div>
                       </div>
 
@@ -461,8 +461,8 @@ export default function Home() {
                       <div className=" p-4 rounded-lg shadow-md flex items-center space-x-3">
                         <TrendingUp className="text-purple-600" size={24} />
                         <div>
-                          <h4 className="text-sm font-medium">Performance</h4>
-                          <p className="text-green-900 ">+15%</p>
+                          <h4 className="text-sm font-medium">Stake</h4>
+                          <p className="text-green-900 ">{portfolio.tokens>0? <p>Calculating</p>: <p>-</p>}</p>
                         </div>
                       </div>
 
@@ -471,7 +471,7 @@ export default function Home() {
                         <BarChart2 className="text-yellow-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Allocation</h4>
-                          <p className="text-gray-700 ">    {portfolio.tokens.map((token) => token.token_name).join(", ")}
+                          <p className="text-gray-700 "> {portfolio.tokens>0? <p>{portfolio.tokens.map((token) => token.token_name).join(", ")}</p>: <p>-</p>}   
                           </p>
                         </div>
                       </div>
@@ -487,8 +487,8 @@ export default function Home() {
 
 
               <motion.div
-                className="  text-gray-900 rounded-lg p-6 transition-transform duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
+                className="  text-gray-900 rounded-lg p-6 transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
               >
                 <Paper
                   elevation={5}
@@ -603,7 +603,7 @@ export default function Home() {
 
                       </TableHead>
                       <TableBody>
-                        {activities.map((activity, index) => (
+                        {activities && activities.length>0 ? (activities.map((activity, index) => (
                           <TableRow
                             key={index}
                             sx={{
@@ -705,7 +705,9 @@ export default function Home() {
                             </TableCell>
 
                           </TableRow>
-                        ))}
+                        ))):(<TableRow>
+                          <div className="text-center text-black py-5 text-2xl" >No activity yet</div>
+                        </TableRow>)}
                       </TableBody>
                     </Table>
                   </TableContainer>
@@ -714,8 +716,8 @@ export default function Home() {
 
               {/* Supported Networks Card */}
               <motion.div
-                className="bg-white/10 backdrop-blur-xl shadow-lg rounded-lg p-4 transition-transform duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
+                className="bg-white/10 backdrop-blur-xl shadow-lg rounded-lg p-4 transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
               >
                 <h2 className="text-lg font-semibold text-gray-900 mb-2">
                   <Layers className="inline-block mr-1" />
@@ -769,8 +771,8 @@ export default function Home() {
               >
                 <h2 className="text-2xl mb-4 text-gray-900">Selected Protocols</h2>
                 <motion.div
-                className=" rounded-lg p-4 transition-transform duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
+                className=" rounded-lg p-4 transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {selectedProtocols.length === 0 ? (
@@ -794,9 +796,9 @@ export default function Home() {
               </div>
 
               <motion.div
-                className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
-              > 
+                className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-100 hover:scale-102"
+                whileHover={{ scale: 1.02 }}
+                >
 <div className="flex flex-col items-center justify-center min-h-screen  p-6">
       <h1 className="text-4xl text-black text-center mb-6">Liquid Staking</h1>
 
