@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, ArrowRight, Coins, Wallet, Shield, Layers } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const StakingEducation = () => {
   const fadeIn = {
@@ -13,29 +15,35 @@ const StakingEducation = () => {
   const networks = [
     {
       name: 'Solana',
-      apy: '6-8%',
-      minStake: '1 SOL',
-      validators: '1,700+',
-      totalStaked: '$12B+'
+      protocol: 'Marinade',
+      logo: '/mnde.png',
+      apy: '8.19%',
+      users: '147,548',
+      totalStaked: '8,142,628 SOL',
+      tvl: '$ 1.6B+'
     },
     {
       name: 'Aptos',
-      apy: '7-10%',
-      minStake: '100 APT',
-      validators: '100+',
-      totalStaked: '$2B+'
+      protocol: 'Tortuga',
+      logo: '/apt.png',
+      apy: '~7%',
+      users: '21,135',
+      totalStaked: '315,128.255 APT',
+      tvl: '$ 61,361,882'
     },
     {
       name: 'Polygon',
-      apy: '5-12%',
-      minStake: '1 MATIC',
-      validators: '100+',
-      totalStaked: '$3B+'
+      protocol: 'Ankr',
+      logo: '/ankr.png',
+      apy: '4.21%',
+      users: '4520',
+      totalStaked: '977,362.74 POL',
+      tvl:'$ 370,811'
     }
   ];
 
   return (
-    <div className="min-h-screen px-40 text-white">
+    <div className="min-h-screen px-12 md:px-40 text-white">
       {/* Hero Section */}
       <motion.section 
         className=" h-screen flex flex-col justify-center items-center text-center p-4"
@@ -43,10 +51,10 @@ const StakingEducation = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        <h1 className="lg:text-6xl md:mt-20 mt-40 text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
           Understanding Crypto Staking
         </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mb-8">
+        <p className="text-xl text-gray-900 font-medium max-w-2xl mb-8">
           Discover how to earn passive income by participating in network security
         </p>
         <motion.div
@@ -58,13 +66,13 @@ const StakingEducation = () => {
       </motion.section>
 
       {/* What is Staking Section */}
-      <motion.section className="py-20 px-4 md:px-8" {...fadeIn}>
+      <motion.section className="py-20 md:px-8" {...fadeIn}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl text-black mb-12 text-center">What is Staking?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Coins className="w-8 h-8" />,
+                icon: <Coins className="w- h-8" />,
                 title: "Lock & Earn",
                 description: "Lock your crypto assets to earn regular rewards while supporting network security"
               },
@@ -93,45 +101,57 @@ const StakingEducation = () => {
       </motion.section>
 
       {/* Network Comparison Section */}
-      <motion.section className="py-20 px-4 md:px-8 rounded-xl bg-gray-300/50" {...fadeIn}>
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl mb-12 text-black text-center">Popular Staking Networks</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {networks.map((network, index) => (
-              <motion.div
-              className="bg-white/10 backdrop-blur-xl shadow-lg rounded-xl p-4 transition-transform duration-300 hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-            >
-                <h3 className="text-2xl font-bold text-black mb-4">{network.name}</h3>
-                <ul className="space-y-3">
-                  <li className="flex justify-between">
-                    <span className="text-gray-900">APY</span>
-                    <span className="text-green-700">{network.apy}</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-900">Min Stake</span>
-                    <span className='text-black'>{network.minStake}</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-900">Validators</span>
-                    <span className='text-black'>{network.validators}</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-900">Total Staked</span>
-                    <span className='text-black'>{network.totalStaked}</span>
-                  </li>
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <motion.section className="py-10 px-4 md:px-8 rounded-xl bg-gray-300/50" {...fadeIn}>
+      <div className="max-w-6xl mx-auto">
+      <h2 className="text-4xl mb-12 text-black text-center">Popular Staking Protocols</h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {networks.map((network, index) => (
+          <motion.div
+            key={index}
+            className="bg-white/10 backdrop-blur-xl shadow-lg rounded-xl p-4 transition-transform duration-300 hover:scale-105"
+            whileHover={{ scale: 1.05 }}
+          >
+            {/* Network Logo and Name */}
+            <div className="flex items-center mb-4">
+              <Image src={network.logo} alt={`${network.name} logo`} width={40} height={40} className="mr-3" />
+              <div>
+                <h3 className="text-2xl font-medium text-black">{network.name}</h3>
+                <p className="text-gray-600 text-lg">{network.protocol}</p>
+              </div>
+            </div>
+
+            {/* Staking Details */}
+            <ul className="space-y-3">
+              <li className="flex justify-between">
+                <span className="text-gray-900">APY</span>
+                <span className="text-green-700">{network.apy}</span>
+              </li>
+              <li className="flex justify-between">
+                <span className="text-gray-900">Users</span>
+                <span className="text-teal-700">{network.users}</span>
+              </li>
+              <li className="flex justify-between">
+                <span className="text-gray-900">Total Staked</span>
+                <span className="text-teal-700">{network.totalStaked}</span>
+              </li>
+              <li className="flex justify-between">
+                <span className="text-gray-900">TVL</span>
+                <span className="text-green-700">{network.tvl}</span>
+              </li>
+            </ul>
+            
+          </motion.div>
+        ))}
+      </div>
+    </div>
+    <div className='text-center text-black mt-10'>More on the way...</div>
       </motion.section>
 
       {/* FrostFin Platform Section */}
       <motion.section className="py-20 px-4 md:px-8" {...fadeIn}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl text-black mb-12 text-center">Stake Easily with FrostFin</h2>
-          <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-8 rounded-2xl">
+          <div className="bg-gradient-to-r from-blue-900/70 to-purple-900/50 p-8 rounded-2xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h3 className="text-2xl mb-4">Chain Abstraction Technology</h3>
@@ -139,13 +159,14 @@ const StakingEducation = () => {
                   FrostFin leverages Okto's advanced chain abstraction to simplify multi-chain staking. 
                   Manage all your staked assets across Solana, Aptos, and Polygon from a single dashboard.
                 </p>
-                <motion.button
+                <Link href='/frostboard'><motion.button
                   className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Start Staking <ArrowRight className="w-4 h-4" />
                 </motion.button>
+                </Link>
               </div>
               <div className="relative">
                 <motion.div
