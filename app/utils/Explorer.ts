@@ -8,15 +8,15 @@ export const getExplorerUrl = (networkName: string, transactionHash: string): st
         break;
       case 'APTOS_TESTNET':
         // For testnet Aptos
-        explorerUrl = `https://explorer.aptoslabs.com/tx/${transactionHash}`;
+        explorerUrl = `https://explorer.aptoslabs.com/txn/${transactionHash}`;
         break;
       case 'SOLANA':
         // For mainnet Solana
-        explorerUrl = `https://explorer.solana.com/tx/${transactionHash}?cluster=mainnet`;
+        explorerUrl = `https://explorer.solana.com/txn/${transactionHash}?cluster=mainnet`;
         break;
       case 'SOLANA_TESTNET':
         // For testnet Solana
-        explorerUrl = `https://explorer.solana.com/tx/${transactionHash}?cluster=devnet`;
+        explorerUrl = `https://explorer.solana.com/txn/${transactionHash}?cluster=devnet`;
         break;
       case 'POLYGON':
         // For mainnet Polygon

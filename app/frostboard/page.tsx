@@ -8,7 +8,7 @@ import FNavbar from "../components/FixedNav";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { getToken } from "next-auth/jwt";
-import { Wallet, Box, Plus, Cross, CircleX, Loader, Snowflake, DollarSign, TrendingUp, Layers, BarChart2 } from "lucide-react";
+import { Wallet,  CircleX, Loader, Snowflake, DollarSign, TrendingUp, Layers, BarChart2, ChevronDown, Hand, HandIcon } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -23,7 +23,6 @@ import {
 import { Activity, ArrowUpRight, Clock, Link as LinkIcon } from 'lucide-react';
 import { convertQuantity } from "../utils/Convert";
 import { getExplorerUrl } from "../utils/Explorer";
-import TokenPortfolioChart from "../components/Pie";
 import FundAllocationPieChart from "../components/Pie";
 import TransactionForm from "../components/Txn";
 import { protocolData } from "../utils/Staking";
@@ -375,7 +374,7 @@ export default function Home() {
                 className="bg-white/10 shadow-lg backdrop-blur-sm rounded-lg p-6 transition-transform duration-100 hover:scale-102"
                 whileHover={{ scale: 1.02 }}
               >
-                <h2 className="text-xl text-gray-900 font-semibold mb-4">
+                <h2 className="text-xl text-gray-900  mb-4">
                   <Wallet className="inline-block mr-2" /> Portfolio
                 </h2>
 
@@ -428,7 +427,7 @@ export default function Home() {
               <motion.div
                 className=" text-gray-900 backdrop-blur-sm rounded-lg p-6 shadow-lg transition-transform duration-100 hover:scale-102"
                 whileHover={{ scale: 1.02 }}
-              ><h1 className="text-2xl">Token Allocation</h1>
+              ><h1 className="text-xl">Token Allocation</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Left half - Pie Chart */}
                   <div className="flex items-center justify-center">
@@ -479,7 +478,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Additional Info */}
                     <div className="mt-4 text-sm text-gray-800">
                       <p>Data based on live token holdings.</p>
                     </div>
@@ -505,7 +503,7 @@ export default function Home() {
                   <div className="p-6 border-b border-gray-800 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <ArrowUpRight className="t" size={24} />
-                      <h2 className="text-2xl  text-black">Portfolio Activity</h2>
+                      <h2 className="text-xl  text-black">Portfolio Activity</h2>
                     </div>
                     <Chip
                       label="Live Updates"
@@ -721,11 +719,11 @@ export default function Home() {
                 className="bg-white/10 backdrop-blur-xl shadow-lg rounded-lg p-4 transition-transform duration-100 hover:scale-102"
                 whileHover={{ scale: 1.02 }}
               >
-                <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                <h2 className="text-xl text-gray-900 mb-2">
                   <Layers className="inline-block mr-1" />
                   Supported Networks
                 </h2>
-                <p className="text-sm text-gray-900 mb-4">Explore available networks</p>
+                <p className="text-sm text-gray-900 mb-4">Select the blockchains you wish to stake in</p><HandIcon/>
 
                 {/* Checkbox selection for networks */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
@@ -749,22 +747,39 @@ export default function Home() {
 
                 {/* Display selected networks */}
                 {selectedChains.length > 0 && (
-                  <div className="mt-4 p-3 border border-gray-200 rounded-lg ">
-                    <h3 className="font-semibold text-gray-900 text-md mb-2">Selected Networks:</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {selectedChains.map((chain) => (
-                        <div key={chain.chain_id} className="flex items-center space-x-2">
-                          <img
-                            src={chain.logo || 'https://png.pngtree.com/png-vector/20191016/ourmid/pngtree-blockchain-artificial-intelligence-vector-icon-png-image_1803928.jpg'}
-                            alt={chain.network_name}
-                            className="w-6 h-6 rounded-full"
-                          />
-                          <span className="text-sm text-gray-900">{chain.network_name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+    <div className="mt-4 p-3 border border-gray-200 rounded-lg ">
+      <h3 className="text-xl text-gray-900 text-md mb-2">Selected Networks:</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {selectedChains.map((chain) => {
+          // Find the matching wallet for each selected chain
+          const wallet = wallets.find((wallet) => wallet.network_name === chain.network_name);
+
+          return (
+            <div key={chain.chain_id} className="flex overflow-auto flex-col items-start space-y-2">
+              <div className="flex items-center space-x-2">
+                <img
+                  src={chain.logo || 'https://png.pngtree.com/png-vector/20191016/ourmid/pngtree-blockchain-artificial-intelligence-vector-icon-png-image_1803928.jpg'}
+                  alt={chain.network_name}
+                  className="w-6 h-6 rounded-full"
+                />
+                <span className="text-sm text-gray-900 font-semibold">{chain.network_name}</span>
+              </div>
+
+              {/* Display wallet address if found */}
+              <div className="flex  overflow-auto">
+              {wallet ? (
+                <span className="text-xs text-black font-medium">{wallet.address}</span>
+              ) : (
+                <span className="text-xs text-red-500">solana wallet needs funding
+                </span>
+              )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )}
               </motion.div>
 
               <div
@@ -796,6 +811,16 @@ export default function Home() {
                   </div>
                 </motion.div>
               </div>
+
+
+              <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="flex flex-col items-center justify-center">
+          <ChevronDown className="w-80 h-80 text-black" />
+          </div>
+        </motion.div>
 
               <motion.div
                 className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-100 hover:scale-102"
