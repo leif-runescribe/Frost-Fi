@@ -29,6 +29,7 @@ import TransactionForm from "../components/Txn";
 import { protocolData } from "../utils/Staking";
 import InteractiveSharpTorusComponent from "../components/Sphere";
 import TransactionExecutor from "../components/Exec";
+import TransactionComponent from "../components/Transaction";
 
 
 export default function Home() {
@@ -431,7 +432,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {/* Left half - Pie Chart */}
                   <div className="flex items-center justify-center">
-                    {portfolio.tokens > 0 ? (<FundAllocationPieChart tokens={portfolio.tokens} />) : (<p className="text-red-600 py-16 lg:py-0 ">Go to view wallets and fund the wallets you need</p>)}
+                    {portfolio.total > 0 ? (<FundAllocationPieChart tokens={portfolio.tokens} />) : (<p className="text-red-600 py-16 lg:py-0 ">Go to view wallets and fund the wallets you need</p>)}
                   </div>
 
                   {/* Right half - Analytics Section */}
@@ -454,7 +455,7 @@ export default function Home() {
                         <DollarSign className="text-green-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Investment Value</h4>
-                          <p className="text-gray-900 ">{portfolio.tokens > 0 ? <p>Calculating</p> : <p>-</p>}</p>
+                          <p className="text-gray-900 ">{portfolio.total > 0 ? <p>Calculating</p> : <p>-</p>}</p>
                         </div>
                       </div>
 
@@ -463,7 +464,7 @@ export default function Home() {
                         <TrendingUp className="text-purple-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Stake</h4>
-                          <p className="text-green-900 ">{portfolio.tokens > 0 ? <p>Calculating</p> : <p>-</p>}</p>
+                          <p className="text-green-900 ">{portfolio.total > 0 ? <p>Calculating</p> : <p>-</p>}</p>
                         </div>
                       </div>
 
@@ -472,7 +473,7 @@ export default function Home() {
                         <BarChart2 className="text-yellow-600" size={24} />
                         <div>
                           <h4 className="text-sm font-medium">Allocation</h4>
-                          <p className="text-gray-700 "> {portfolio.tokens > 0 ? <p>{portfolio.tokens.map((token) => token.token_name).join(", ")}</p> : <p>-</p>}
+                          <p className="text-gray-700 "> {portfolio.total > 0 ? <p>{portfolio.tokens.map((token) => token.token_name).join(", ")}</p> : <p>-</p>}
                           </p>
                         </div>
                       </div>
@@ -857,7 +858,12 @@ export default function Home() {
                 className="bg-white/10 shadow-lg backdrop-blur-smrounded-lg p-4 transition-transform duration-100 hover:scale-102"
                 whileHover={{ scale: 1.02 }}
               >
-                <TransactionExecutor/>
+                <TransactionComponent
+      from="0xB1Ae5e09fb7AE0970CEAb0A70D9256083Fe788C2"
+      to="0x59E225a5f7c17DADEa59b13965409774678f0a86"
+      value="0x000000100"
+      network="POLYGON"
+    />
               </motion.div>
             </div>
           </main>
